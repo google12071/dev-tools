@@ -13,6 +13,7 @@
         <module>spring-web</module>
         <module>cache</module>
         <module>middleware</module>
+        <module>microservice</module>
     </modules>
 
 
