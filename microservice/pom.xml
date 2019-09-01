@@ -11,5 +11,6 @@
 
     <artifactId>microservice</artifactId>
 
+    <version>${microservice-version}</version>
 
 </project>
