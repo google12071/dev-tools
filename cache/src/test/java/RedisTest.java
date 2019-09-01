@@ -16,8 +16,8 @@ import java.util.List;
 
 public class RedisTest {
 
-      @Resource(name = "redisTemplate")
-      private RedisTemplate<String,Object> redisTemplate;
+    @Resource(name = "redisTemplate")
+    private RedisTemplate<String, Object> redisTemplate;
 
     private List<User> userList = Arrays.asList(new User(1L, "fq", "安徽省宿州市", true, 1),
                     new User(2L, "zh", "浙江省桐乡市", false, 0),
