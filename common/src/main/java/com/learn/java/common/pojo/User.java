@@ -3,7 +3,7 @@ package com.learn.java.common.pojo;
 import java.io.Serializable;
 
 
-public class User implements Serializable {
+public class  User implements Serializable {
     private static final long serialVersionUID = 1328162770555321399L;
 
     private Long id;
@@ -22,6 +22,9 @@ public class User implements Serializable {
         this.address = address;
         this.member = member;
         this.sex = sex;
+    }
+
+    public User() {
     }
 
     public Long getId() {
