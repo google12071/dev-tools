@@ -79,7 +79,7 @@ public class SnowflakeIdGenerator {
      * @return SnowflakeId
      */
     public synchronized long nextId() {
-        long timestamp = timeGen();
+        long timestamp = System.currentTimeMillis();
 
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
         if (timestamp < lastTimestamp) {
@@ -117,7 +117,7 @@ public class SnowflakeIdGenerator {
      * @return 当前时间戳
      */
     protected long tilNextMillis(long lastTimestamp) {
-        long timestamp = timeGen();
+        long timestamp = System.currentTimeMillis();
         while (timestamp <= lastTimestamp) {
             timestamp = timeGen();
         }
@@ -131,6 +131,7 @@ public class SnowflakeIdGenerator {
     protected long timeGen() {
         return System.currentTimeMillis();
     }
+
 
 
 
