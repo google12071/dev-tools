@@ -61,8 +61,8 @@ public class RedisUtil {
      * 获取Redis工作类对象
      * @return
      */
-    public static RedisUtil getRedisUtil() {
-        return new RedisUtil();
+    public static Jedis getRedis() {
+        return new RedisUtil().getJedis();
     }
 
     /**
