@@ -14,8 +14,9 @@ package com.learn.java.common.util;
  */
 public class SnowflakeIdGenerator {
 
+    // ==============================Fields===========================================
     /** 开始时间截 (2015-01-01) */
-    private final long twepoch = 8420041600000L;
+    private final long twepoch = 1420041600000L;
 
     /** 机器id所占的位数 */
     private final long workerIdBits = 5L;
@@ -79,7 +80,7 @@ public class SnowflakeIdGenerator {
      * @return SnowflakeId
      */
     public synchronized long nextId() {
-        long timestamp = System.currentTimeMillis();
+        long timestamp = timeGen();
 
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
         if (timestamp < lastTimestamp) {
@@ -117,7 +118,7 @@ public class SnowflakeIdGenerator {
      * @return 当前时间戳
      */
     protected long tilNextMillis(long lastTimestamp) {
-        long timestamp = System.currentTimeMillis();
+        long timestamp = timeGen();
         while (timestamp <= lastTimestamp) {
             timestamp = timeGen();
         }
@@ -132,15 +133,14 @@ public class SnowflakeIdGenerator {
         return System.currentTimeMillis();
     }
 
-
-
-
-
+    //==============================Test=============================================
     /** 测试 */
     public static void main(String[] args) {
-        SnowflakeIdGenerator generator = new SnowflakeIdGenerator(0, 0);
+        SnowflakeIdGenerator idWorker = new SnowflakeIdGenerator(0, 0);
         for (int i = 0; i < 1000; i++) {
-            System.out.println(generator.nextId());
+            long id = idWorker.nextId();
+            System.out.println(Long.toBinaryString(id));
+            System.out.println(id);
         }
     }
 }
