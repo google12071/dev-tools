@@ -3,8 +3,7 @@ package com.learn.java.common.pojo;
 import com.learn.java.common.javabase.asynch.Util;
 
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class Shop {
     private final String name;
@@ -28,8 +27,12 @@ public class Shop {
     }
 
     private double calculatePrice(String product) {
-        Util.delay(1000);
-        return random.nextDouble() * product.charAt(0) + product.charAt(1);
+        long start = System.currentTimeMillis();
+        Util.delay(5000);
+        double value = random.nextDouble() * product.charAt(0) + product.charAt(1);
+        long end = System.currentTimeMillis();
+        System.out.println("calculatePrice start:" + start + ",end:" + end + ",cost:" + (end - start) + "ms");
+        return value;
     }
 
     public Future<Double> getPriceAsync(String product) {
@@ -40,6 +43,36 @@ public class Shop {
         }).start();
 
         return futurePrice;
+    }
+
+
+    public Double getPriceBasic(String product) {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Future<Double> future = executor.submit(new Callable<Double>() {
+            @Override
+            public Double call() throws Exception {
+                return calculatePrice(product);
+            }
+        });
+
+        doSomethingElse();
+
+        try {
+            return future.get(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void doSomethingElse() {
+        long start = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
+        System.out.println("doSomethingElse start:" + start + ",end:" + end + ",cost:" + (end - start) + "ms");
     }
 
 }
