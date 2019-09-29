@@ -46,6 +46,11 @@ public class Shop {
     }
 
 
+    /**
+     * Future用法
+     * @param product
+     * @return
+     */
     public Double getPriceBasic(String product) {
         ExecutorService executor = Executors.newCachedThreadPool();
         Future<Double> future = executor.submit(new Callable<Double>() {
@@ -58,6 +63,7 @@ public class Shop {
         doSomethingElse();
 
         try {
+            //future结果返回前，阻塞当前线程
             return future.get(10, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
