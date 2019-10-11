@@ -9,9 +9,9 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Zookeeper实现分布式锁
+ * 利用Curator框架+Zookeeper实现分布式锁
  */
-public class DistributedLock {
+public class CuratorDistributedLock {
 
     public static void main(String[] args) {
 
