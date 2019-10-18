@@ -22,23 +22,33 @@ public class PageUtil {
     private static List<Shop> shopList = Arrays.asList(new Shop("大润发"), new Shop("苏宁易购"));
 
 
-    public static <T> List<T> getDataByPage(List<T> list, int start, int count) {
+    public static <T, E extends PageBase> E getDataByPage(E element, List<T> list, int start, int count) {
         List<T> subList;
         int size = list.size();
         if (start + count <= size) {
             subList = list.subList(start, start + count);
+            element.setHasMore(true);
+            element.setStartIndex(start + count);
         } else {
             subList = list.subList(start, size);
+            element.setHasMore(false);
+            element.setStartIndex(size);
         }
-        return subList;
+        element.setDataList(subList);
+        return element;
     }
 
     public static void main(String[] args) {
-        List<User> result = getDataByPage(userList, 0, 10);
+        UserRes userRes = new UserRes();
+        ShopRes shopRes = new ShopRes();
 
-        List<Shop> shops = getDataByPage(shopList, 0, 20);
+        userRes = getDataByPage(userRes, userList, 0, 10);
+        userRes.setAge(3);
 
-        System.out.println(result);
-        System.out.println(shops);
+        shopRes = getDataByPage(shopRes, shopList, 0, 1);
+        shopRes.setLocation("新河街");
+
+        System.out.println(userRes);
+        System.out.println(shopRes);
     }
 }
