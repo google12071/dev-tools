@@ -1,21 +1,30 @@
 package com.learn.java.common.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Tester {
-    public static void main(String[]args){
-        List<Integer> arrayList = new ArrayList<>();
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
-        arrayList.add(4);
-        System.out.println(arrayList);
-        arrayList.clear();
 
-        System.out.println(arrayList);
-        arrayList.add(3);
-        arrayList.add(4);
-        System.out.println(arrayList);
+    public static class ChildThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + ",is running...");
+        }
+    }
+
+    public static class ChildThread2 implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + ",is running...");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Thread t = new Thread(new ChildThread2());
+        t.start();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "is running");
     }
 }
