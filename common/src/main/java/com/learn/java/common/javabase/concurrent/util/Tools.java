@@ -17,4 +17,17 @@ public class Tools {
             Thread.currentThread().interrupt();
         }
     }
+
+    public static void startAndWaitTerminated(Iterable<Thread> threads)
+            throws InterruptedException {
+        if (null == threads) {
+            throw new IllegalArgumentException("threads is null!");
+        }
+        for (Thread t : threads) {
+            t.start();
+        }
+        for (Thread t : threads) {
+            t.join();
+        }
+    }
 }
