@@ -16,6 +16,11 @@ public class SingleThreadSingleton {
     private SingleThreadSingleton() {
     }
 
+    /**
+     * 返回类实例
+     *
+     * @return
+     */
     public static SingleThreadSingleton getInstance() {
         return instance == null ? new SingleThreadSingleton() : instance;
     }

@@ -1,34 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CollectionUtils {
 
     public static void main(String[] args) {
-        List<Integer> numberList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            int r = new Random().nextInt(100) + 1;
-            if (!numberList.contains(r)) {
-                numberList.add(r);
-            }
-        }
+        List<Integer> numberList = Arrays.asList(1, 1, 3, 5, 3, 1,5,2,3,7, 9);
+        Set<Integer> numberSet = new HashSet<>();
 
-        System.out.println("original list:" + numberList);
+        numberList = numberList.stream().filter(x -> numberSet.add(x)).collect(Collectors.toList());
 
-        List<Integer> targetList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            int r = new Random().nextInt(100) + 1;
-            if (!targetList.contains(r)) {
-                targetList.add(r);
-            }
-        }
-
-        int location = new Random().nextInt(10) + 1;
-        numberList.addAll(location, targetList);
-
-
-        System.out.println("targetList:" + targetList);
-
-        System.out.println("location:" + location + ",resultList:" + numberList);
+        System.out.println(numberList);
     }
 }
