@@ -6,7 +6,7 @@ import com.learn.java.common.pojo.User;
 import java.util.List;
 
 public class GsonTest {
-    private final static Gson gson=new Gson();
+    private final static Gson gson = new Gson();
 
     public static void main(String[] args) {
         User user1 = new User(1L, "a", "AA", true, 1);
@@ -21,5 +21,10 @@ public class GsonTest {
         }.getType());
 
         userList.forEach(System.out::println);
+
+        User empty = new User();
+
+        String s = gson.toJson(empty);
+        System.out.println(gson.fromJson(s, User.class));
     }
 }
