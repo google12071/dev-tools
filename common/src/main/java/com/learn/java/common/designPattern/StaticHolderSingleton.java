@@ -1,4 +1,4 @@
-package com.learn.java.designPattern;
+package com.learn.java.common.designPattern;
 
 /**
  * 基于静态内部类的单例模式

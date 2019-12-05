@@ -1,4 +1,4 @@
-package com.learn.java.designPattern;
+package com.learn.java.common.designPattern;
 
 /**
  * 基于双重检查锁定的单例模式
