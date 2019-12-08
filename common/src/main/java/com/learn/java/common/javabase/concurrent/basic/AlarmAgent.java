@@ -114,7 +114,7 @@ public class AlarmAgent {
          * @return
          */
         private boolean checkConnection() {
-            return new Random().nextInt(1000) > 500;
+            return new Random().nextInt(10) > 5;
         }
     }
 }

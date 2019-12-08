@@ -10,9 +10,13 @@ public class AlarmAgentTest {
 
     public static void main(String[] args) {
         try {
-            agent.sendAlarm("alarm message1...");
-            Thread.sleep(2000);
-            agent.sendAlarm("alarm message2...");
+            int i = 0;
+            while (i < 100) {
+                agent.sendAlarm("alarm message:" + i);
+                i++;
+                Thread.sleep(2000);
+            }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
