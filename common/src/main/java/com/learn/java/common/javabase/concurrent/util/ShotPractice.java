@@ -149,7 +149,7 @@ public class ShotPractice {
     }
 
     public static void main(String[] args) {
-        ShotPractice practice = new ShotPractice(5,3 , 5);
+        ShotPractice practice = new ShotPractice(5,3 , 3);
         practice.start();
     }
 }
