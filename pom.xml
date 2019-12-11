@@ -37,7 +37,7 @@
         <guava-version>28.0-jre</guava-version>
         <common-lang3-version>3.1</common-lang3-version>
         <common-collections-version>3.2.2</common-collections-version>
-
+        <servlet-version>4.0.1</servlet-version>
         <!--module定义-->
         <cache-version>1.0.0</cache-version>
         <common-version>1.0.0</common-version>
@@ -173,6 +173,14 @@
             <artifactId>commons-collections</artifactId>
             <version>${common-collections-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet-version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 
