@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-web</artifactId>
-    <version>${spring-web-version}</version>
+    <artifactId>web</artifactId>
+    <version>${web-version}</version>
 
     <properties>
         <mysql-connector-version>8.0.11</mysql-connector-version>
