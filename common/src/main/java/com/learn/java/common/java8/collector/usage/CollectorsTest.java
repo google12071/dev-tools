@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.*;
 
 /**
@@ -118,6 +119,18 @@ public class CollectorsTest {
                         }, toSet())));
     }
 
+    private static Map<Boolean, List<Dish>> partitionByVegeterian() {
+        return menu.stream().collect(partitioningBy(Dish::isVegetarian));
+    }
+
+    private static Map<Boolean, Map<Dish.Type, List<Dish>>> vegetarianDishesByType() {
+        return menu.stream().collect(partitioningBy(Dish::isVegetarian, groupingBy(Dish::getType)));
+    }
+
+    private static Object mostCaloricPartitionedByVegetarian() {
+        return menu.stream().collect(partitioningBy(Dish::isVegetarian, collectingAndThen(maxBy(comparingInt(Dish::getCalories)), Optional::get)));
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Dishes grouped by type: " + groupDishesByType());
@@ -129,5 +142,9 @@ public class CollectorsTest {
         System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOprionals());
         System.out.println("Sum calories by type: " + sumCaloriesByType());
         System.out.println("Caloric levels by type: " + caloricLevelsByType());
+
+        System.out.println("Dishes partitioned by vegetarian: " + partitionByVegeterian());
+        System.out.println("Vegetarian Dishes by type: " + vegetarianDishesByType());
+        System.out.println("Most caloric dishes by vegetarian: " + mostCaloricPartitionedByVegetarian());
     }
 }
