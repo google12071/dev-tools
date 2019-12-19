@@ -58,8 +58,6 @@ public class CollectorsTest {
 
     enum CaloricLevel {DIET, NORMAL, FAT}
 
-    ;
-
     public static Map<Currency, List<Transaction>> groupByCurrency() {
         return transactions.stream().collect(Collectors.groupingBy(Transaction::getCurrency));
     }
