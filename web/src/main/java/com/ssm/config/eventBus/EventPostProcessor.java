@@ -27,17 +27,15 @@ public class EventPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        Method[] methods = bean.getClass().getMethods();
+        Method[] methods = bean.getClass().getDeclaredMethods();
         if (ArrayUtils.isEmpty(methods)) {
             return bean;
         }
-
         for (Method method : methods) {
             EventSubscribe subscribe = method.getAnnotation(EventSubscribe.class);
             if (subscribe == null) {
                 continue;
             }
-
             IEventHandler eventHandlerProxy;
             if (subscribe.threadSafe()) {
                 eventHandlerProxy = new ThreadSafeEventHandlerProxy((IEventHandler) bean);
@@ -48,7 +46,6 @@ public class EventPostProcessor implements BeanPostProcessor {
             eventBus.register(eventHandlerProxy);
             asyncEventBus.register(eventHandlerProxy);
         }
-
         return bean;
     }
 

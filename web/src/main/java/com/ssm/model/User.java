@@ -16,4 +16,9 @@ public class User implements Serializable {
     private String des;
     private Date createTime;
     private Date updateTime;
+
+    public User(Long uid, String name) {
+        this.uid = uid;
+        this.name = name;
+    }
 }

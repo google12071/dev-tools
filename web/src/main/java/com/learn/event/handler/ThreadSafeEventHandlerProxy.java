@@ -5,7 +5,6 @@ import com.google.common.eventbus.Subscribe;
 import com.ssm.config.eventBus.Event;
 
 public class ThreadSafeEventHandlerProxy implements IEventHandler {
-
     private IEventHandler handler;
 
     public ThreadSafeEventHandlerProxy(IEventHandler handler) {

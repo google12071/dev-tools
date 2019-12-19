@@ -6,5 +6,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface EventSubscribe {
-    boolean threadSafe() default true;
+    boolean threadSafe() default false;
 }

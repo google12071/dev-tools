@@ -20,8 +20,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
-
-
     @Autowired
     private AsyncEventBus asyncEventBus;
 
