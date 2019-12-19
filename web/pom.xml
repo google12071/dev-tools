@@ -16,7 +16,6 @@
         <spring-boot-version>2.1.0.RELEASE</spring-boot-version>
         <mysql-connector-version>8.0.11</mysql-connector-version>
         <mybatis-spring-boot-version>2.1.0</mybatis-spring-boot-version>
-        <lomback-verson>1.16.20</lomback-verson>
     </properties>
 
     <dependencies>
@@ -54,12 +53,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lomback-verson}</version>
         </dependency>
     </dependencies>
 

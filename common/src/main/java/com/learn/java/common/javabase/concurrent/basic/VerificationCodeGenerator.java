@@ -1,7 +1,6 @@
 package com.learn.java.common.javabase.concurrent.basic;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.text.DecimalFormat;
 
@@ -9,8 +8,8 @@ import java.text.DecimalFormat;
  * 验证码生成器
  */
 
+@Slf4j
 public class VerificationCodeGenerator {
-    private final static Logger logger = LoggerFactory.getLogger(VerificationCodeGenerator.class);
 
     public static class GenerateThread implements Runnable {
         @Override
@@ -24,13 +23,13 @@ public class VerificationCodeGenerator {
         }
 
         private void sendCode(String code) {
-            logger.info(Thread.currentThread().getName() + ",sendCode:" + code);
+            log.info(Thread.currentThread().getName() + ",sendCode:" + code);
         }
     }
 
     public static void main(String[] args) {
         int numberOfProcessors = Runtime.getRuntime().availableProcessors();
-        logger.info("numberOfProcessors:" + numberOfProcessors);
+        log.info("numberOfProcessors:" + numberOfProcessors);
         for (int i = 0; i < numberOfProcessors; i++) {
             Thread t = new Thread(new GenerateThread());
             t.start();

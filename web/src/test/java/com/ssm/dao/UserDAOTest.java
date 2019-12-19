@@ -16,9 +16,17 @@ public class UserDAOTest {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private User user;
+
     @Test
     public void getAllUser() {
         List<User> userList = userDAO.getAllUser();
         System.out.println(userList);
+    }
+
+    @Test
+    public void getUser() {
+        System.out.println(user);
     }
 }

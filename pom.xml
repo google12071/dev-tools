@@ -39,6 +39,7 @@
         <common-lang3-version>3.1</common-lang3-version>
         <common-collections-version>3.2.2</common-collections-version>
         <servlet-version>4.0.1</servlet-version>
+        <lomback-verson>1.16.20</lomback-verson>
         <!--module定义-->
         <cache-version>1.0.0</cache-version>
         <common-version>1.0.0</common-version>
@@ -186,6 +187,13 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${servlet-version}</version>
             <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lomback-verson}</version>
         </dependency>
 
     </dependencies>
