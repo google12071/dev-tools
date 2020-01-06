@@ -6,7 +6,7 @@ import org.I0Itec.zkclient.serialize.ZkSerializer;
 import java.io.UnsupportedEncodingException;
 
 /**
- * 自定义zookeeper序列号反序列化规则
+ * 自定义zookeeper序列化反序列化规则
  */
 public class CustomSerializer implements ZkSerializer {
     @Override

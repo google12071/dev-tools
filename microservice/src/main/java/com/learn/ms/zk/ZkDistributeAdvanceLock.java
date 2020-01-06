@@ -15,10 +15,9 @@ import java.util.concurrent.locks.Lock;
 
 /**
  * 优化后的分布式锁:
- *   利用临时顺序节点来实现分布式锁
- *   获取锁：取顺序号（类似银行排队拿号），判断自己的序号是否最小，若是则获得锁，否则注册前一个兄弟节点watcher，则阻塞等待
- *   释放锁：删除自己创建的临时顺序节点
- *
+ * 利用临时顺序节点来实现分布式锁
+ * 获取锁：取顺序号（类似银行排队拿号），判断自己的序号是否最小，若是则获得锁，否则注册前一个兄弟节点watcher，则阻塞等待
+ * 释放锁：删除自己创建的临时顺序节点
  */
 public class ZkDistributeAdvanceLock implements Lock {
     private static final Logger logger = LoggerFactory.getLogger(ZkDistributeAdvanceLock.class);
@@ -40,10 +39,13 @@ public class ZkDistributeAdvanceLock implements Lock {
      */
     private ThreadLocal<String> beforePath = new ThreadLocal<>();
 
+    /**
+     * 可重入计数
+     */
     private ThreadLocal<Integer> reenterCount = ThreadLocal.withInitial(() -> 0);
 
     public ZkDistributeAdvanceLock(String path) {
-        if (path == null || path.trim().equals("")) {
+        if (path == null || "".equals(path.trim())) {
             throw new IllegalArgumentException("路径为空!");
         }
 
@@ -74,8 +76,7 @@ public class ZkDistributeAdvanceLock implements Lock {
     }
 
     @Override
-    public void lockInterruptibly() throws InterruptedException {
-
+    public void lockInterruptibly() {
     }
 
     @Override
@@ -114,10 +115,9 @@ public class ZkDistributeAdvanceLock implements Lock {
     }
 
     @Override
-    public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+    public boolean tryLock(long time, TimeUnit unit) {
         return false;
     }
-
 
     @Override
     public void unlock() {
@@ -146,13 +146,13 @@ public class ZkDistributeAdvanceLock implements Lock {
         IZkDataListener dataListener = new IZkDataListener() {
             @Override
             public void handleDataChange(String s, Object o) throws Exception {
-                logger.info(Thread.currentThread().getName() + "监听到节点删除");
+                logger.info(Thread.currentThread().getName() + "监听到节点变更");
                 downLatch.countDown();
             }
 
             @Override
             public void handleDataDeleted(String s) throws Exception {
-                logger.info(Thread.currentThread().getName() + "监听到节点变更");
+                logger.info(Thread.currentThread().getName() + "监听到节点删除");
             }
         };
 
