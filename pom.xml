@@ -15,6 +15,7 @@
         <module>middleware</module>
         <module>microservice</module>
         <module>data</module>
+        <module>interview</module>
     </modules>
 
 
