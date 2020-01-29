@@ -7,8 +7,8 @@ package com.learn.java.common.jvm;
  */
 public class DeadLockDemo {
 
-    private static final String bowl = "碗";
-    private static final String chopsticks = "筷子";
+    private static final String BOWL = "碗";
+    private static final String CHOPSTICKS = "筷子";
 
     static class LockA implements Runnable {
         @Override
@@ -16,9 +16,9 @@ public class DeadLockDemo {
             try {
                 while (true) {
                     System.out.println(Thread.currentThread().getName() + "开始争抢");
-                    synchronized (DeadLockDemo.bowl) {
+                    synchronized (DeadLockDemo.BOWL) {
                         System.out.println(Thread.currentThread().getName() + "争抢到碗");
-                        synchronized (DeadLockDemo.chopsticks) {
+                        synchronized (DeadLockDemo.CHOPSTICKS) {
                             System.out.println(Thread.currentThread().getName() + "争抢到筷子");
                         }
                     }
@@ -36,9 +36,9 @@ public class DeadLockDemo {
             try {
                 while (true) {
                     System.out.println(Thread.currentThread().getName() + "开始争抢");
-                    synchronized (DeadLockDemo.bowl) {
+                    synchronized (DeadLockDemo.BOWL) {
                         System.out.println(Thread.currentThread().getName() + "争抢到筷子");
-                        synchronized (DeadLockDemo.chopsticks) {
+                        synchronized (DeadLockDemo.CHOPSTICKS) {
                             System.out.println(Thread.currentThread().getName() + "争抢到碗");
                         }
                     }
