@@ -1,5 +1,7 @@
 package com.learn.java.common.reflection;
 
+import com.learn.java.common.pojo.Student;
+
 import java.lang.reflect.Field;
 
 /**
@@ -31,9 +33,26 @@ public class ReflectFieldTest {
             //获取指定字段名称的Field类,可以是任意修饰符的自动,注意不包含父类的字段
             Field field2 = clazz.getDeclaredField("desc");
             System.out.println("field2:" + field2);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
+
+            //获取Class对象引用
+            Student st = (Student) clazz.newInstance();
+            //获取父类public字段并赋值
+            Field ageField = clazz.getField("age");
+            ageField.set(st, 18);
+            Field nameField = clazz.getField("name");
+            nameField.set(st, "Lily");
+
+            //只获取当前类的字段,不获取父类的字段
+            Field descField = clazz.getDeclaredField("desc");
+            descField.setAccessible(true);
+            descField.set(st, "I am student");
+            Field scoreField = clazz.getDeclaredField("score");
+            //设置可访问，score是private的
+            scoreField.setAccessible(true);
+            scoreField.set(st, 88);
+            System.out.println(st.toString());
+            System.out.println(scoreField.get(st));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

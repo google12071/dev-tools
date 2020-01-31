@@ -1,7 +1,7 @@
 package com.learn.java.common.pojo;
 
 public class Person {
-    private String name;
+    public String name;
     /**
      * 确保子类可见
      */
