@@ -3,6 +3,9 @@ package com.learn.java.common.pojo;
 import java.io.Serializable;
 
 
+/**
+ * @author lfq
+ */
 public class  User implements Serializable {
     private static final long serialVersionUID = 1328162770555321399L;
 
@@ -16,6 +19,8 @@ public class  User implements Serializable {
 
     private Integer sex;
 
+    private Integer age;
+
     public User(Long id, String name, String address, Boolean member, Integer sex) {
         this.id = id;
         this.name = name;
@@ -25,6 +30,16 @@ public class  User implements Serializable {
     }
 
     public User() {
+    }
+
+    public User(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    private User(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {
@@ -67,14 +82,23 @@ public class  User implements Serializable {
         this.sex = sex;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                        "id=" + id +
-                        ", name='" + name + '\'' +
-                        ", address='" + address + '\'' +
-                        ", member=" + member +
-                        ", sex=" + sex +
-                        '}';
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", member=" + member +
+                ", sex=" + sex +
+                ", age=" + age +
+                '}';
     }
 }
