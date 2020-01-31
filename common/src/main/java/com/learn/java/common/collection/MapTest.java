@@ -1,7 +1,9 @@
 package com.learn.java.common.collection;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +39,7 @@ public class MapTest {
         }
     }
 
-    public static void main(String[] args) {
+    public static void multipleThread() {
         Thread[] threads = new Thread[100];
         for (int i = 0; i < 100; i++) {
             threads[i] = new Thread(new UUIDThread(i));
@@ -47,5 +49,18 @@ public class MapTest {
         }
         countDownLatch.countDown();
         System.out.println(Thread.currentThread().getName() + "countDown...");
+    }
+
+    public static void concurrentHashMapTest() {
+        Map<String, Integer> map = new ConcurrentHashMap<>();
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put(null, 3);
+        map.put("c", null);
+        map.entrySet().forEach(System.out::println);
+    }
+
+    public static void main(String[] args) {
+        concurrentHashMapTest();
     }
 }
