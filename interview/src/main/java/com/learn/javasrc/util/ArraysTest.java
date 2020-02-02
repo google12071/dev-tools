@@ -3,8 +3,10 @@ package com.learn.javasrc.util;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.ImmutableList;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -76,5 +78,11 @@ public class ArraysTest {
 
         SortDTO[] copyArr = copy(targetArr, 0, targetArr.length);
         System.out.println("copyArr:" + JSON.toJSONString(copyArr));
+
+        SortDTO maxDto = Collections.max(dtoList, Comparator.comparing(SortDTO::getSortValue));
+        System.out.println("max:" + JSON.toJSONString(maxDto));
+
+        SortDTO minDto = Collections.min(dtoList, Comparator.comparing(SortDTO::getSortValue));
+        System.out.println("min:" + JSON.toJSONString(minDto));
     }
 }
