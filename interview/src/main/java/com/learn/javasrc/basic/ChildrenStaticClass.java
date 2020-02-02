@@ -22,6 +22,7 @@ public class ChildrenStaticClass extends ParentStaticClass {
         log.info("子类构造器初始化");
     }
 
+
     public static void staticMethod() {
         log.info("子类静态方法初始化");
     }
@@ -29,5 +30,6 @@ public class ChildrenStaticClass extends ParentStaticClass {
     public static void main(String[] args) {
         log.info("main方法初始化");
         new ChildrenStaticClass();
+        ChildrenStaticClass.staticMethod();
     }
 }
