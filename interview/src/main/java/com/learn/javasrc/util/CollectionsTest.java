@@ -1,6 +1,7 @@
 package com.learn.javasrc.util;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -109,7 +110,20 @@ public class CollectionsTest {
         log.info("toArray 数组大小多了，array2 数组[3] 值是{}，数组[4] 值是{}", array2[3], array2[4]);
     }
 
+    public static void testCompute() {
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < 10; i++) {
+            map.putIfAbsent(String.valueOf(i), i);
+        }
+        map.entrySet().forEach(entry -> System.out.println(JSON.toJSON(entry)));
+
+        for (int i = 0; i < 10; i++) {
+            map.computeIfPresent(String.valueOf(i), (k, v) -> v * 2);
+        }
+        map.entrySet().forEach(entry -> System.out.println(JSON.toJSON(entry)));
+    }
+
     public static void main(String[] args) {
-        testListToArray();
+        testCompute();
     }
 }
