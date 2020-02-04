@@ -43,8 +43,27 @@ public class ThreadPoolTest {
         return value;
     }
 
+    /**
+     * 自定义线程池
+     */
+    public static class CustomThreadPoolExecutor extends ThreadPoolExecutor {
+        public CustomThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
+        }
+
+        @Override
+        protected void beforeExecute(Thread t, Runnable r) {
+            log.info("hello," + t.getName() + ",before execute");
+        }
+
+        @Override
+        protected void afterExecute(Runnable r, Throwable t) {
+            log.info("after execute");
+        }
+    }
+
     public static void main(String[] args) {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 3, 5,
+        ThreadPoolExecutor executor = new CustomThreadPoolExecutor(3, 3, 5,
                 TimeUnit.SECONDS, new ArrayBlockingQueue<>(10), factory, new ThreadPoolExecutor.AbortPolicy());
         try {
             for (int i = 0; i < 100; i++) {
