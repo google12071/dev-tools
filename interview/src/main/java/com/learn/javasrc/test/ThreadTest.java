@@ -64,13 +64,71 @@ public class ThreadTest {
         ExecutorService service = new ThreadPoolExecutor(10, 15, 5,
                 TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), factory);
 
-        FutureTask futureTask = new FutureTask((Callable<String>) () -> {
+        FutureTask futureTask1 = new FutureTask((Callable<String>) () -> {
             Thread.sleep(30000);
             // 返回一句话
             return "我是子线程" + Thread.currentThread().getName();
         });
-        service.submit(futureTask);
-        String result = (String) futureTask.get();
+        service.submit(futureTask1);
+        String result = (String) futureTask1.get();
         log.info("result is:" + result);
+
+        FutureTask futureTask2 = new FutureTask(new Runnable() {
+            @Override
+            public void run() {
+                log.info(Thread.currentThread().getName() + ",is running...");
+            }
+        }, null);
+        service.submit(futureTask2);
+    }
+
+    @Test
+    public void testThreadByCallable() throws ExecutionException, InterruptedException {
+        FutureTask futureTask = new FutureTask((Callable<String>) () -> {
+            Thread.sleep(3000);
+            String result = "我是子线程" + Thread.currentThread().getName();
+            log.info("子线程正在运行：{}", Thread.currentThread().getName());
+            return result;
+        });
+        new Thread(futureTask).start();
+        log.info("返回的结果是 {}", futureTask.get());
+        log.info("取消的结果是 {}，执行的结果是{}", futureTask.isCancelled(), futureTask.isDone());
+
+    }
+
+    @Test
+    public void testJoin2() throws Exception {
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                log.info("我是子线程 2,开始沉睡");
+                try {
+                    Thread.sleep(2000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                log.info("我是子线程 2，执行完成");
+            }
+        });
+
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                log.info("我是子线程 1，开始运行");
+                try {
+                    log.info("我是子线程 1，我在等待子线程 2");
+                    // 这里是代码关键
+                    thread2.join();
+
+                    log.info("我是子线程 1，子线程 2 执行完成，我继续执行");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                log.info("我是子线程 1，执行完成");
+            }
+        });
+        thread1.start();
+        thread2.start();
+        Thread.sleep(1000);
     }
 }
