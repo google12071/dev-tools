@@ -1,7 +1,6 @@
-package com.learn.javasrc.util;
+package com.learn.javasrc.test;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;

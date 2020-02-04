@@ -1,4 +1,4 @@
-package com.learn.javasrc.util;
+package com.learn.javasrc.test;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

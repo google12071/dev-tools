@@ -1,8 +1,7 @@
-package com.learn.javasrc.util;
+package com.learn.javasrc.test;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 

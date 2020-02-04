@@ -1,4 +1,4 @@
-package com.learn.javasrc.util;
+package com.learn.javasrc.test;
 
 /**
  * @author lfq

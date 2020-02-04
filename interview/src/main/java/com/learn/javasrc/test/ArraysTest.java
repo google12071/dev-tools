@@ -1,9 +1,8 @@
-package com.learn.javasrc.util;
+package com.learn.javasrc.test;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.ImmutableList;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.Collections;
