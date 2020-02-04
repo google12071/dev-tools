@@ -45,7 +45,7 @@ public class ThreadPoolTest {
 
     public static void main(String[] args) {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 3, 5,
-                TimeUnit.SECONDS, new LinkedBlockingQueue<>(10), factory, new ThreadPoolExecutor.AbortPolicy());
+                TimeUnit.SECONDS, new ArrayBlockingQueue<>(10), factory, new ThreadPoolExecutor.AbortPolicy());
         try {
             for (int i = 0; i < 100; i++) {
                 executor.submit(new Worker());
