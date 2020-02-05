@@ -9,11 +9,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Arrays工具类
- *
- * @author lfq
- */
 @Slf4j
 public class ArraysTest {
     private static final List<SortDTO> dtoList = ImmutableList.of(
