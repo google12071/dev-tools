@@ -1,8 +1,11 @@
 package com.learn.java.common.designPattern;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 基于双重检查锁定的单例模式
  */
+@Slf4j
 public class DCLSingleton {
 
     /**
@@ -20,7 +23,7 @@ public class DCLSingleton {
      * 获取单例实例
      * @return
      */
-    public DCLSingleton getInstance() {
+    public static DCLSingleton getInstance() {
         //第一次检查确保仅当instance为空时，才进行同步
         if (instance == null) {
             synchronized (DCLSingleton.class) {
@@ -31,5 +34,10 @@ public class DCLSingleton {
             return instance;
         }
         return instance;
+    }
+
+    public static void main(String[] args) {
+        DCLSingleton instance = DCLSingleton.getInstance();
+        log.info(instance.toString());
     }
 }

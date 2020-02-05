@@ -4,7 +4,6 @@ package com.learn.java.common.designPattern;
  * 基于枚举的单例模式
  */
 public class EnumBasedSingleton {
-
     /**
      * 枚举类相当于单例
      */
