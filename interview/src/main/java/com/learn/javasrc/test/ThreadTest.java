@@ -131,4 +131,26 @@ public class ThreadTest {
         thread2.start();
         Thread.sleep(1000);
     }
+
+    /**
+     * 测试子线程从父线程继承ThreadLocal数据
+     */
+    @Test
+    public void testThreadLocal() {
+        ThreadLocal<Integer> threadLocal = new InheritableThreadLocal<>();
+        threadLocal.set(10);
+        log.info(Thread.currentThread().getName() + ",value:" + threadLocal.get());
+
+        Thread child = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                threadLocal.set(3);
+                int value = threadLocal.get();
+                log.info(Thread.currentThread().getName() + ",value:" + value);
+            }
+        });
+        child.start();
+        log.info(Thread.currentThread().getName() + ",value:" + threadLocal.get());
+
+    }
 }
