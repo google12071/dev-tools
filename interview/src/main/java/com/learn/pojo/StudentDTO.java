@@ -19,7 +19,7 @@ public class StudentDTO implements Serializable {
     /**
      * 初始化数据
      */
-    private final List<StudentDTO> studentDTOList = new ArrayList<StudentDTO>() {
+    public static final List<StudentDTO> studentDTOList = new ArrayList<StudentDTO>() {
         {
             // 添加学生数据1
             add(new StudentDTO(1L, "W199", "小美", "WM", 100D, new ArrayList<Course>() {
@@ -52,6 +52,8 @@ public class StudentDTO implements Serializable {
         }
     };
 
+
+
     /**
      * 构造器
      *
@@ -69,6 +71,10 @@ public class StudentDTO implements Serializable {
         this.sex = sex;
         this.scope = scope;
         this.courseList = courseList;
+    }
+
+    public StudentDTO() {
+        this.id=1L;
     }
 
     /**
