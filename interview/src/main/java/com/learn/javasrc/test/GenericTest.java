@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.learn.javasrc.generic.Generic;
 import com.learn.javasrc.generic.GenericFruit;
 import com.learn.pojo.Course;
-import com.sun.tools.javah.Gen;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
