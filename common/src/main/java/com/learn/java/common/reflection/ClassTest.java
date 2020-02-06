@@ -1,10 +1,14 @@
 package com.learn.java.common.reflection;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
+
 /**
  * 反射机制测试类
  *
  * @author lfq
  */
+@Slf4j
 public class ClassTest {
 
     public static ClassTest newInstance() {
@@ -36,6 +40,15 @@ public class ClassTest {
         //输出类所在的包路径
         System.out.println(" 通过Class.forName方式，反射出类所在的包路径： " + mClass.getName());
     }
+
+    @Test
+    public void isArray(){
+        int[] arr = new int[10];
+        boolean isArray = arr.getClass().isArray();
+        log.info(String.valueOf(isArray));
+    }
+
+
 
     public static void main(String[] args) {
         createClassInstance1();
