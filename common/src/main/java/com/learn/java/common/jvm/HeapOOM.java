@@ -1,9 +1,7 @@
 package com.learn.java.common.jvm;
 
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * @ClassName HeapOOM
@@ -41,5 +39,10 @@ public class HeapOOM {
             System.out.println("目前活动线程数量：" + threadNum);
             throw e;
         }
+    }
+
+    @Test
+    public void heapOOM() {
+        log.info("hello world");
     }
 }
