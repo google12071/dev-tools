@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -105,6 +106,13 @@ public class GuavaCacheTest {
         value2 = cache.getIfPresent(2);
         value3 = cache.getIfPresent(3);
         log.info("value1:{},value2:{},value3:{}", value1, value2, value3);
+
+        try {
+            String value = cache.get(10, () -> "value10");
+            log.info("value10:{}", value);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
 
