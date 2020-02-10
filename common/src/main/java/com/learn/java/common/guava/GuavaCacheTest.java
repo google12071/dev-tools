@@ -129,4 +129,29 @@ public class GuavaCacheTest {
         }
         cache.invalidate(1);
     }
+
+    /**
+     * 加载数据
+     */
+    @Test
+    public void loadData() {
+        LoadingCache<String, Integer> loadingCache = CacheBuilder.newBuilder().
+                expireAfterWrite(5, TimeUnit.SECONDS).maximumSize(5).
+                build(new CacheLoader<String, Integer>() {
+                    @Override
+                    public Integer load(String key) throws Exception {
+                        return null;
+                    }
+                });
+        for (int i = 0; i < 5; i++) {
+            loadingCache.put("test" + i, i);
+        }
+
+        try {
+            Integer value = loadingCache.get("test1", () -> 100);
+            log.info("value:{}", value);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 }
