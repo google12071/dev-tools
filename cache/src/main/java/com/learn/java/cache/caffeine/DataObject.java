@@ -1,5 +1,8 @@
 package com.learn.java.cache.caffeine;
 
+import lombok.Data;
+
+@Data
 public class DataObject {
     private String data;
     private static final int objectCounter = 0;
