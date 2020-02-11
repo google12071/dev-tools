@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName CaffineTest
+ * @ClassName CaffeineTest
  * @Description:Caffeine缓存(API和Guava基本保持一直)
  * @Author lfq
  * @Date 2020/2/11
