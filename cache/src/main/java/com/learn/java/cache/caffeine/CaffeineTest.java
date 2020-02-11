@@ -2,12 +2,15 @@ package com.learn.java.cache.caffeine;
 
 import com.alibaba.fastjson.JSON;
 import com.github.benmanes.caffeine.cache.*;
+import com.github.benmanes.caffeine.cache.stats.CacheStats;
 import com.learn.java.common.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Test;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -74,6 +77,29 @@ public class CaffeineTest {
                 .build(k -> DataObject.get("Data for " + k));
         DataObject dataObject = cache.get("5");
         log.info("data:{}", dataObject);
+    }
+
+    @Test
+    public void disPlayStats(){
+        LoadingCache<Integer, Integer> cache = Caffeine.newBuilder().maximumSize(20).expireAfterWrite(10, TimeUnit.SECONDS).
+                build(new CacheLoader<Integer, Integer>() {
+                          @Nullable
+                          @Override
+                          public Integer load(@NonNull Integer key) throws Exception {
+                              return key.hashCode();
+                          }
+                      }
+                );
+        for (int i = 0; i < 1000; i++) {
+            cache.put(i, new Random().nextInt(1000) + 1);
+        }
+
+        for (int i = 0; i < 1000; i++) {
+            Integer value = cache.get(i, var -> new Random().nextInt(var) + 1);
+            log.info("value:{}", value);
+        }
+
+        log.info("stats:{}", cache.stats());
     }
 
     @Test
