@@ -150,6 +150,8 @@ public class GuavaCacheTest {
         try {
             Integer value = loadingCache.get("test1", () -> 100);
             log.info("value:{}", value);
+
+            loadingCache.invalidate("test1");
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
