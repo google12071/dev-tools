@@ -1,6 +1,8 @@
 package com.ssm.dao;
 
+import com.alibaba.fastjson.JSON;
 import com.ssm.model.User;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class UserDAOTest {
 
     @Autowired
@@ -22,7 +25,7 @@ public class UserDAOTest {
     @Test
     public void getAllUser() {
         List<User> userList = userDAO.getAllUser();
-        System.out.println(userList);
+        log.info("userList:{}", JSON.toJSONString(userList));
     }
 
     @Test

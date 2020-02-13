@@ -1,7 +1,11 @@
 package com.learn.java.common.collection;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -12,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author lfq
  */
+@Slf4j
 public class MapTest {
     private static final HashMap<String, String> map = new HashMap<>();
 
@@ -58,6 +63,16 @@ public class MapTest {
         map.put(null, 3);
         map.put("c", null);
         map.entrySet().forEach(System.out::println);
+    }
+
+    @Test
+    public void treeMap(){
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(10, "hello");
+        map.put(2, "welcome");
+        map.put(3, "hello");
+        map.put(4, "welcome");
+        log.info("lastKey:{},lastEntry:{}", map.lastKey(), map.lastEntry());
     }
 
     public static void main(String[] args) {

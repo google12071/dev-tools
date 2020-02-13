@@ -12,4 +12,5 @@
         <typeAlias alias="LinkedList" type="java.util.LinkedList"/>
     </typeAliases>
 
+
 </configuration>
