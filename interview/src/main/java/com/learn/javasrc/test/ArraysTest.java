@@ -2,12 +2,11 @@ package com.learn.javasrc.test;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 public class ArraysTest {
@@ -62,6 +61,27 @@ public class ArraysTest {
      */
     public static SortDTO[] copy(SortDTO[] original, int from, int to) {
         return Arrays.copyOfRange(original, from, to);
+    }
+
+    /**
+     * 遍历时删除异常
+     */
+    @Test
+    public void removeWhenIterate(){
+        List<String> list = new ArrayList<String>() {{
+            add("1");
+            add("2");
+            add("3");
+            add("3");
+            add("4");
+        }};
+
+        for (String s : list) {
+            if ("3".equals(s)) {
+                list.remove(s);
+            }
+        }
+        log.info("after remove:{}", JSON.toJSONString(list));
     }
 
     public static void main(String[] args) {
