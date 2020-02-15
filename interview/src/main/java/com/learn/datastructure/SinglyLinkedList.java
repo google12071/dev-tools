@@ -5,22 +5,22 @@ import java.util.Set;
 
 /**
  * @ClassName SinglyLinkedList
- * @Description:单链表
+ * @Description:单链表（为描述问题，简单直接存储整数）
  * @Author lfq
  * @Date 2020/2/15
  **/
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList {
 
     private int size = 0;
     /**
      * 链表表头
      */
-    private Node<T> head;
+    private Node head;
 
     /**
      * 链表表尾部
      */
-    private Node<T> tail;
+    private Node tail;
 
     /**
      * 结点抽象
@@ -28,36 +28,29 @@ public class SinglyLinkedList<T> {
      * @param <T>
      */
     private static class Node<T> {
-        private T data;
+        private int val;
         private Node<T> next;
 
         public Node() {
         }
 
-        public Node(T data) {
-            this.data = data;
+        public Node(int val) {
+            this.val = val;
         }
+
 
         @Override
         public String toString() {
-            return data.toString();
+            return String.valueOf(val);
         }
     }
 
-    public void add(T data) {
-        add(new Node<>(data));
-    }
-
-    /**
-     * 后插法
-     *
-     * @param node
-     */
-    private void add(Node<T> node) {
+    public void add(int val) {
+        Node node = new Node(val);
         if (head == null) {
             head = node;
         } else {
-            Node<T> prev = tail;
+            Node prev = tail;
             prev.next = node;
         }
         tail = node;
@@ -66,15 +59,16 @@ public class SinglyLinkedList<T> {
 
     /**
      * 删除元素
-     * @param data
+     *
+     * @param val
      */
-    public void remove(T data) {
+    public void remove(int val) {
         /**
          * 从头开始定位
          */
-        Node<T> node = head;
-        Node<T> prev = null;
-        while (node != null && (!node.data.equals(data))) {
+        Node node = head;
+        Node prev = null;
+        while (node != null && (node.val != val)) {
             prev = node;
             node = node.next;
         }
@@ -90,7 +84,7 @@ public class SinglyLinkedList<T> {
             }
         }
 
-        Node<T> next = node.next;
+        Node next = node.next;
         if (prev != null && next != null) {
             prev.next = next;
         } else if (prev != null) {
@@ -104,29 +98,25 @@ public class SinglyLinkedList<T> {
     }
 
     public void display() {
-        Node<T> current = head;
+        Node current = head;
         while (current != null) {
             System.out.println(current);
             current = current.next;
         }
     }
 
-    public int size() {
-        return size;
-    }
-
     /**
-     *移除未排序链表中的重复节点。保留最开始出现的节点。
+     * 移除未排序链表中的重复节点。保留最开始出现的节点。
      */
-    public void removeDuplicateNodes(){
+    public void removeDuplicateNodes() {
         if (head == null) {
             return;
         }
-        Node<T> prev = null;
-        Node<T> current = head;
-        Set<T> nodeSet = new HashSet<>();
+        Node prev = null;
+        Node current = head;
+        Set<Integer> nodeSet = new HashSet<>();
         while (current != null) {
-            if (nodeSet.add(current.data)) {
+            if (nodeSet.add(current.val)) {
                 prev = current;
             } else {
                 if (prev != null) {
@@ -150,9 +140,9 @@ public class SinglyLinkedList<T> {
             return;
         }
 
-        Node<T> p = head.next;
-        Node<T> q = head.next.next;
-        Node<T> t = null;
+        Node p = head.next;
+        Node q = head.next.next;
+        Node t = null;
         while (q != null) {
             t = q.next;
             q.next = p;
@@ -162,15 +152,15 @@ public class SinglyLinkedList<T> {
         /**
          * 表头和表尾部处理
          */
-        Node<T> tmp = head;
+        Node tmp = head;
         head = tail;
         tmp.next.next = tmp;
         tmp.next = null;
     }
 
 
-    public static void main(String[]args){
-        SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+    public static void main(String[] args) {
+        SinglyLinkedList linkedList = new SinglyLinkedList();
         linkedList.add(9);
         linkedList.add(10);
         linkedList.add(13);
