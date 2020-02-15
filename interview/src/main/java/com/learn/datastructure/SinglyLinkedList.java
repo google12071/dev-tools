@@ -137,16 +137,48 @@ public class SinglyLinkedList<T> {
         }
     }
 
+    /**
+     * 链表逆置
+     * 1、链表为空或只有一个元素直接返回；
+     * 2、设置两个前后相邻的指针p,q，使得p指向的节点为q指向的节点的后继；
+     * 3、重复步骤2，直到q为空；
+     * 4、调整链表头和链表尾；
+     */
+    public void reverse() {
+        //链表为空，或只有一个元素直接返回
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        Node<T> p = head.next;
+        Node<T> q = head.next.next;
+        Node<T> t = null;
+        while (q != null) {
+            t = q.next;
+            q.next = p;
+            p = q;
+            q = t;
+        }
+        /**
+         * 表头和表尾部处理
+         */
+        Node<T> tmp = head;
+        head = tail;
+        tmp.next.next = tmp;
+        tmp.next = null;
+    }
+
+
     public static void main(String[]args){
         SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
-        linkedList.add(3);
-        linkedList.add(4);
+        linkedList.add(9);
+        linkedList.add(10);
+        linkedList.add(13);
+        linkedList.add(8);
+        linkedList.add(0);
         linkedList.add(5);
-        linkedList.add(3);
-        linkedList.add(5);
-        linkedList.add(4);
-
-        linkedList.removeDuplicateNodes();
+        linkedList.add(1);
+        linkedList.reverse();
         linkedList.display();
     }
 }
