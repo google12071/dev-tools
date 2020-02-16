@@ -14,6 +14,15 @@ import java.util.List;
 @Slf4j
 public class ParentStaticClass {
     private static final List<String> parentList = Lists.newArrayList("father");
+    private int a;
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getA() {
+        return a;
+    }
 
     static {
         log.info("静态父类代码块初始化");

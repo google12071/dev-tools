@@ -14,11 +14,17 @@ import java.util.List;
 public class ChildrenStaticClass extends ParentStaticClass {
     private static final List<String> childrenList = Lists.newArrayList("child");
 
+
     static {
         log.info("静态子类代码块初始化");
     }
 
+    {
+        log.info("非静态代码块初始化");
+    }
+
     public ChildrenStaticClass() {
+        super.setA(5);
         log.info("子类构造器初始化");
     }
 
@@ -27,9 +33,15 @@ public class ChildrenStaticClass extends ParentStaticClass {
         log.info("子类静态方法初始化");
     }
 
+    @Override
+    public int getA() {
+        return super.getA();
+    }
+
     public static void main(String[] args) {
         log.info("main方法初始化");
-        new ChildrenStaticClass();
-        ChildrenStaticClass.staticMethod();
+        ChildrenStaticClass child = new ChildrenStaticClass();
+        ParentStaticClass parent = new ParentStaticClass();
+        log.info("child:{},parent:{}", child.getA(),parent.getA());
     }
 }
