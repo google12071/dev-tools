@@ -84,6 +84,15 @@ public class ArraysTest {
         log.info("after remove:{}", JSON.toJSONString(list));
     }
 
+    @Test
+    public void listOperation(){
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(1,6);
+    }
+
     public static void main(String[] args) {
         SortDTO[] targetArr = toArray(dtoList);
         sort(targetArr);
