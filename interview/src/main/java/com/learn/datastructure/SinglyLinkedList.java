@@ -10,8 +10,6 @@ import java.util.Set;
  * @Date 2020/2/15
  **/
 public class SinglyLinkedList {
-
-    private int size = 0;
     /**
      * 链表表头
      */
@@ -24,12 +22,10 @@ public class SinglyLinkedList {
 
     /**
      * 结点抽象
-     *
-     * @param <T>
      */
-    private static class Node<T> {
+    private static class Node {
         private int val;
-        private Node<T> next;
+        private Node next;
 
         public Node() {
         }
@@ -54,7 +50,6 @@ public class SinglyLinkedList {
             prev.next = node;
         }
         tail = node;
-        size++;
     }
 
     /**
@@ -94,7 +89,6 @@ public class SinglyLinkedList {
         } else {
             head = null;
         }
-        size--;
     }
 
     public void display() {
