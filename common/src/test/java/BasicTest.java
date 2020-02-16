@@ -8,7 +8,8 @@ import lombok.extern.slf4j.Slf4j;
  **/
 @Slf4j
 public class BasicTest {
-    public static int divideZero() {
+
+    public static  int divideZero() {
         int a = 1;
         int b = 0;
         int c = 0;
