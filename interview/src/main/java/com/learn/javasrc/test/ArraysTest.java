@@ -108,4 +108,16 @@ public class ArraysTest {
         SortDTO minDto = Collections.min(dtoList, Comparator.comparing(SortDTO::getSortValue));
         System.out.println("min:" + JSON.toJSONString(minDto));
     }
+
+
+    /**
+     * 数组拷贝
+     */
+    @Test
+    public void arrayCopy(){
+        int[] arr = {1, 2, 3, 4, 5};
+        log.info("arr:{}", arr);
+        System.arraycopy(arr, 0, arr, 0, 5);
+        log.info("arr:{}", arr);
+    }
 }
