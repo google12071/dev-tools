@@ -8,9 +8,9 @@ package com.learn.javasrc.test;
  **/
 public class GCDemo {
     public static void main(String[] args) {
-        byte[] b = new byte[4 * 1024 * 1024];
-        System.out.println("first allocate");
-        b = new byte[4 * 1024 * 1024];
-        System.out.println("second allocate");
+        byte[] allocation1, allocation2;
+        allocation1 = new byte[30900*1024];
+        //allocation2 = new byte[900*1024];
+
     }
 }

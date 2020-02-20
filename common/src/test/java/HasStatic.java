@@ -13,7 +13,7 @@ import static org.springframework.data.repository.init.ResourceReader.Type.JSON;
  * @Date 2020/2/16
  **/
 @Slf4j
-public class BasicTest {
+public class HasStatic {
 
     public static int divideZero() {
         int a = 1;

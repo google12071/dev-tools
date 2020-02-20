@@ -1,5 +1,7 @@
 package com.learn.java.common.javabase.String;
 
+import org.junit.Test;
+
 /**
  * String类相关
  *
@@ -58,5 +60,21 @@ public class StringTest {
         String str1 = "123";
         String str2 = "345";
         System.out.println("str1HashCode:" + str1.hashCode() + ",str2HashCode:" + str2.hashCode());
+    }
+
+    /**
+     * 字符串常量池
+     */
+    @Test
+    public void constantPool(){
+        String str1 = "str";
+        String str2 = "ing";
+
+        String str3 = "str" + "ing";//常量池中的对象
+        String str4 = str1 + str2; //在堆上创建的新的对象
+        String str5 = "string";//常量池中的对象
+        System.out.println(str3 == str4);//false
+        System.out.println(str3 == str5);//true
+        System.out.println(str4 == str5);//false
     }
 }
