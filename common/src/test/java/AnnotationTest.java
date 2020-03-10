@@ -1,3 +1,4 @@
+import com.learn.java.common.annotation.MyAnnotation;
 import com.learn.java.common.javabase.annotation.NeedAOP;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +22,10 @@ public class AnnotationTest {
         log.info("hello:{},age:{}", message, age);
     }
 
+    @MyAnnotation(value = 5, name = "lisi")
+    public void customAnnotation() {
+    }
+
     public static void main(String[] args) {
         AnnotationTest annotationTest = new AnnotationTest();
         Class<?> testClass = annotationTest.getClass();
@@ -30,6 +35,11 @@ public class AnnotationTest {
             NeedAOP needAOP = method.getDeclaredAnnotation(NeedAOP.class);
             if (needAOP != null && needAOP.needAop()) {
                 log.info("needAOP:{},value:{}", needAOP.needAop(), needAOP.value());
+            }
+
+            MyAnnotation myAnnotation = method.getDeclaredAnnotation(MyAnnotation.class);
+            if (myAnnotation != null) {
+                log.info("value:{},name:{},methodName:{}", myAnnotation.value(), myAnnotation.name(),method.getName());
             }
         }
     }
