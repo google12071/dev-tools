@@ -1,4 +1,11 @@
-package com.learn.ms.zk;
+package com.learn.java.common.zk.lock;
+
+/**
+ * @ClassName ZkDistributeAdvanceLock
+ * @Description:
+ * @Author lfq
+ * @Date 2020/7/21
+ **/
 
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;

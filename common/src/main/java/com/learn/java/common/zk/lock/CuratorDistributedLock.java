@@ -1,4 +1,4 @@
-package com.learn.ms.zk;
+package com.learn.java.common.zk.lock;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
@@ -9,10 +9,12 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 利用Curator框架+Zookeeper实现分布式锁
- */
+ * @ClassName CuratorDistributedLock
+ * @Description:利用Curator框架+Zookeeper实现分布式锁
+ * @Author lfq
+ * @Date 2020/7/21
+ **/
 public class CuratorDistributedLock {
-
     public static void main(String[] args) {
 
         RetryPolicy policy = new ExponentialBackoffRetry(1000, 3);

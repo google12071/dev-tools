@@ -1,24 +1,24 @@
-package com.learn.ms.zk;
+package com.learn.java.common.zk.client;
 
-import org.I0Itec.zkclient.IZkChildListener;
+import com.learn.java.common.zk.lock.CustomSerializer;
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.zookeeper.CreateMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 /**
- * zkClient使用
- */
-public class ZkClientDemo {
-
-    private static final Logger logger = LoggerFactory.getLogger(ZkClientDemo.class);
+ * @ClassName MyZkClient
+ * @Description:
+ * @Author lfq
+ * @Date 2020/7/21
+ **/
+public class MyZkClient {
+    private static final Logger logger = LoggerFactory.getLogger(MyZkClient.class);
 
     public static void main(String[] args) {
 
-        String path="/test/zkClient";
+        String path = "/test/zkClient";
 
         //创建zk连接客户端
         ZkClient client = new ZkClient("localhost:2181", 3000, 3000, new CustomSerializer());
@@ -29,12 +29,7 @@ public class ZkClientDemo {
         }
 
         //设置子节点监听机制
-        client.subscribeChildChanges(path, new IZkChildListener() {
-            @Override
-            public void handleChildChange(String s, List<String> list) throws Exception {
-                logger.info("parentPath:" + s + "子节点发生变化:" + list);
-            }
-        });
+        client.subscribeChildChanges(path, (s, list) -> logger.info("parentPath:" + s + "子节点发生变化:" + list));
 
         //设置数据节点监听机制
         client.subscribeDataChanges(path, new IZkDataListener() {

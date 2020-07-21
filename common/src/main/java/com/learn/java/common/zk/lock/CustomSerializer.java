@@ -1,4 +1,11 @@
-package com.learn.ms.zk;
+package com.learn.java.common.zk.lock;
+
+/**
+ * @ClassName CustomSerializer
+ * @Description:自定义zookeeper序列化反序列化规则
+ * @Author lfq
+ * @Date 2020/7/21
+ **/
 
 import org.I0Itec.zkclient.exception.ZkMarshallingError;
 import org.I0Itec.zkclient.serialize.ZkSerializer;

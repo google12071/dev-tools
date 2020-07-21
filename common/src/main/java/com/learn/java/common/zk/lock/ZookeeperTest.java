@@ -1,4 +1,11 @@
-package com.learn.ms.zk;
+package com.learn.java.common.zk.lock;
+
+/**
+ * @ClassName ZookeeperTest
+ * @Description:
+ * @Author lfq
+ * @Date 2020/7/21
+ **/
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
@@ -109,6 +116,4 @@ public class ZookeeperTest implements Watcher {
             e.printStackTrace();
         }
     }
-
-
 }
