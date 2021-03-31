@@ -32,7 +32,7 @@
         <zookeepr-version>3.4.13</zookeepr-version>
         <curator-version>4.0.1</curator-version>
         <zkclient-version>0.11</zkclient-version>
-        <guava-version>28.0-jre</guava-version>
+        <guava-version>29.0-jre</guava-version>
         <common-lang3-version>3.1</common-lang3-version>
         <common-collections-version>3.2.2</common-collections-version>
         <servlet-version>4.0.1</servlet-version>
